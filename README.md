@@ -44,7 +44,7 @@ switching?)
 ```
 mkdir mysite; cd mysite
 pelican-quickstart            # when it asks for time zone: America/New_York
-git clone https://github.com/EddyRivasLab/angonaka .
+git clone https://github.com/cryptogenomicon/angonaka .
 ```
 
 This creates `content/` and `output/` directories and the
