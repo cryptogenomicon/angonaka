@@ -44,7 +44,7 @@ switching?)
 ```
 mkdir mysite; cd mysite
 pelican-quickstart            # when it asks for time zone: America/New_York
-git clone https://github.com/cryptogenomicon/angonaka .
+git clone https://github.com/cryptogenomicon/angonaka 
 ```
 
 This creates `content/` and `output/` directories and the
@@ -56,6 +56,9 @@ Add to `pelicanconf.py`:
 THEME        = "./angonaka"
 PLUGIN_PATHS = [ '/Users/seddy/alien-src/pelican-plugins' ]
 PLUGINS      = [ 'assets', 'pelican-toc', 'render_math' ]    
+
+TOC = { 'TOC_INCLUDE_TITLE': 'false' }
+
 ```
 
 The `render_math` plugin enables MathJax. Now $e=mc^2$ is an inline
