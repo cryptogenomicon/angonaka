@@ -59,6 +59,8 @@ PLUGINS      = [ 'assets', 'pelican-toc', 'render_math' ]
 
 TOC = { 'TOC_INCLUDE_TITLE': 'false' }
 
+TAG_SAVE_AS = ''
+CATEGORY_SAVE_AS = ''
 ```
 
 The `render_math` plugin enables MathJax. Now $e=mc^2$ is an inline
