@@ -300,8 +300,8 @@ nav#sidebar {
      }
     .sidebar      { display: none  }
     .phone-header { display: none  }
-    .marginnote   { display: block }
-    .sidenote     { display: block }
+    .aside       { display: block }
+    .citation     { display: block }
 }
 
 .article-information {
@@ -337,10 +337,10 @@ nav#sidebar {
 }
 
 .body {
-    counter-reset: sidenote-counter;
+    counter-reset: citation-counter;
 }
-.sidenote,
-.marginnote {
+.citation,
+.aside {
     float: right;
     clear: right;
     margin-right: -55%;
@@ -352,68 +352,73 @@ nav#sidebar {
     vertical-align: baseline;
     position: relative; 
 }
-.sidenote-number {
-    counter-increment: sidenote-counter; 
+.citation-number {
+    counter-increment: citation-counter;
 }
-.sidenote-number:after,
-.sidenote:before {
+.citation-number:after,
+.citation:before {
     font-family: var(--fixed-font), monospace;
     color: var(--test-color);
     position: relative;
     vertical-align: baseline; 
 }
-.sidenote-number:after {
-    content: counter(sidenote-counter);
+.citation-number:after {
+    content: counter(citation-counter);
     font-size: 100%;
     top: -0.2em;
 }
-.sidenote:before {
-    content: counter(sidenote-counter);
+.citation:before {
+    content: counter(citation-counter);
     font-size: 100%;
     top: -0.2em; 
 }
-blockquote .sidenote,
-blockquote .marginnote {
+blockquote .citation,
+blockquote .aside {
     margin-right: -82%;
     min-width: 59%;
     text-align: left; 
 }
-.marginnote hr {
+.aside hr {
   color: var(--highlight-color-1);
 }
-label.sidenote-number {
+label.citation-number {
     display: inline; 
 }
-label.margin-toggle:not(.sidenote-number) {
+label.cite-toggle:not(.citation-number) {
     display: inline; 
 }
-input.margin-toggle {
+input.cite-toggle {
     display: none; 
 }
-label.sidenote-number {
+label.citation-number {
     display: inline; 
 }
 @media screen and (max-width:48em) {
-    label.margin-toggle:not(.sidenote-number) {
+    label.cite-toggle:not(.citation-number) {
         display: inline; 
     }
-    .sidenote,
-    .marginnote {
+    .citation {
         display: none; 
     }
-    .margin-toggle:checked + .sidenote,
-    .margin-toggle:checked + .marginnote {
+    .aside {
+       display: block;
+       float: none;
+       width: 90%;
+       margin: 2em 5%;
+       clear: both;
+    }
+    .cite-toggle:checked + .citation {
         display: block;
         float: left;
-        left: 1em;
         clear: both;
-        width: 95%;
-        margin: 1em 2.5%;
+        width: 90%;
+        margin: 2em 5%;
         vertical-align: baseline;
         position: relative; 
     }
     label {
         cursor: pointer; 
     }
+    
 }
 

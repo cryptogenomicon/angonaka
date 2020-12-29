@@ -3,9 +3,9 @@
 This is the [Pelican](https://blog.getpelican.com/) theme that I use
 for static web sites including my course
 [mcb112.org](http://mcb112.org) and my
-blog [cryptogenomicon.org](http://cryptogenomicon.org).  I derived it
+blog [cryptogenomicon.org](http://cryptogenomicon.org). I derived it
 from an excellent theme called
-[Astrochelys](https://out-of-cheese-error.netlify.app/astrochelys).  
+[Astrochelys](https://out-of-cheese-error.netlify.app/astrochelys).
 (_Astrochelys_ is a genus of Madagascar tortoises. The Angonaka tortoise
 is an _Astrochelys_ species.)
 
@@ -136,13 +136,75 @@ pelican -rl      # runs test server, with autoreloading, at  http://localhost:80
 
 
 
+## marginal notes: citation, aside
+
+There are two types of marginal notes. A `citation` is numbered,
+including a superscripted reference in the main text. An `aside` 
+is unnumbered. The Astrochelys theme calls these `sidenote` and
+`marginnote`. 
+
+To insert a citation (with a number counter reference), we have to
+use a little raw HTML in the Markdown:
+
+```
+<label for="unique-id" class="cite-toggle citation-number"></label>
+<input type="checkbox" id="unique-id" class="citation-toggle"/>
+<span class="citation">
+This is a citation, with a counter.
+</span>
+```
+
+The tag `"unique-id"` needs to be unique for each citation. This is
+used on mobile screens to toggle an inline version of the citation on
+or off (see below). 
+
+To insert an aside:
+
+```
+<span class="aside">
+And this is an aside.
+</span>
+```
+
+### using asides as figure captions
+
+These notes are aligned to the baseline of the text where they were
+inserted. Sometimes you need to adjust this, like when you use a
+marginnote as a caption for an inlined figure. You can use a
+`margin-top` attribute to move the note down:
+
+```
+<span class="aside" style="margin-top:10em">
+This is a caption.
+</span>
+<img src="fig1.png">
+```
+
+
+
+### mobile screens
+
+On mobile screens, we don't have a margin, so both kinds of notes need
+to be displayed in-line in the main text. 
+
+Citations are clickable. Clicking on the cite superscript toggles the
+citation, and causes it to appear or disappear in-line.
+
+Asides are displayed in-line constitutively. 
+
+### emacs customizations
+
+In my `.emacs`, I have Emacs macros for inserting a `citation` and
+`aside`, bound to `M-"` and `M-'`. The citation macro generates a
+random 16-character id tag.
+
+My `.emacs` also customizes `markdown-mode` to deemphasize this HTML
+code, using font-lock to color this code grey.
 
 
 
 
-
-
-## notes on CSS customizations
+## other CSS customizations
 
 
 ### fonts
@@ -226,66 +288,6 @@ mv pygments.css pygments.css.orig
 pygmentize -S native -f html -a .highlight > pygments.css 
 ```
 
-### margin notes
-
-To insert a side note (with a number counter reference), we have to
-use a little raw HTML in the Markdown:
-
-```
-<label for="sn-note" class="margin-toggle sidenote-number"></label>
-<span class="sidenote">
-This is a side note, with a counter.
-</span>
-```
-
-To insert a margin note:
-
-```
-<span class="marginnote">
-And this is a margin note.
-</span>
-```
-
-Their styling in the CSS file:
-
-```
-.body {
-    counter-reset: sidenote-counter;
-}
-.sidenote,
-.marginnote {
-    float: right;
-    clear: right;
-    margin-right: -70%;
-    width: 60%;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 85%;
-    font-family: var(--variable-font), sans-serif;
-    vertical-align: baseline;
-    position: relative; 
-}
-.sidenote-number {
-    counter-increment: sidenote-counter; 
-}
-.sidenote-number:after,
-.sidenote:before {
-    font-family: var(--fixed-font), monospace;
-    color: var(--test-color);
-    position: relative;
-    vertical-align: baseline; 
-}
-.sidenote-number:after {
-    content: counter(sidenote-counter);
-    font-size: 100%;
-    top: -0.2em;
-}
-.sidenote:before {
-    content: counter(sidenote-counter);
-    font-size: 100%;
-    top: -0.2em; 
-}
-```
 
 ### suppressing printing of sidebar/phone-header in PDF
 
@@ -328,7 +330,8 @@ couple of lines in the `base.html` template.
   * Tufte CSS   https://edwardtufte.github.io/tufte-css/  
   * Caches to Caches  http://cachestocaches.com/    has nice margin notes
   * Codepen    https://codepen.io/cliftwalker/pen/XJaEXY  example of clean blockquote
-
+  * https://kennethfriedman.org/thoughts/2019/marginal-notes/ has
+    clean CSS for marginal notes, including adaptation to mobile screens.
   * https://www.gimp.org/fr/about/meta/using-pelican/
   * https://www.gimp.org/fr/about/meta/wtf-pelican.html
   * https://dirtyhandscoding.github.io/posts/blog-migrated-to-pelican-and-github-pages.html
@@ -340,3 +343,8 @@ couple of lines in the `base.html` template.
  * [2020/0422-pelican]
  * [2020/0428-astrochelys-theme]
  * [2020/0808-pelican]
+ * [2020/1228-angonaka-marginnotes] Renamed sidenote and marginnote to
+   citation, aside. Fixed bug in sidenote/citation numbering in
+   pages. Added .emacs customizations with M-", M-' key bindings to
+   macros for inserting citation, aside; and for using font-lock
+   to color and deemphasize their HTML in markdown-mode.
