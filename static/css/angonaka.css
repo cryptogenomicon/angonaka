@@ -346,7 +346,7 @@ nav#sidebar {
     margin-right: -55%;
     width: 50%;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 2em;
     font-size: 80%;
     font-family: var(--variable-font), sans-serif;
     vertical-align: baseline;
