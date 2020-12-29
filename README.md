@@ -306,8 +306,8 @@ I added this to the CSS file:
      }
     .sidebar      { display: none  }
     .phone-header { display: none  }
-    .marginnote   { display: block }
-    .sidenote     { display: block }
+    .citation     { display: block }
+    .aside        { display: block }
 }
 ```
 
